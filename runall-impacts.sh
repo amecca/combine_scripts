@@ -23,7 +23,7 @@ while getopts "hur:" opt; do
 	    extrargs="$extrargs -u"
 	    ;;
 	r)
-	    extrargs="extrargs -r $OPTARG"
+	    extrargs="$extrargs -r $OPTARG"
 	    ;;
 	*)
 	    echo "WARN: forwarding \"-$opt\" assuming it does not have an argument" >&2
