@@ -3,7 +3,7 @@
 show_help(){ cat <<EOF
 usage: ${0##*/} PATTERN
 
-Run combineCards.py on the cards matching PATTERN.
+Run combineCards.py on the cards using PATTERN for input selection.
 PATTERN is a string containing "{year}", e.g. "mycard_{year}.txt".
 The resulting card is saved in a folder named "multiyear";
 the card name is derived from PATTERN by substiting "{year} -> Run2".
@@ -26,7 +26,7 @@ combineCards_Run2(){
 	> "$outname"
 }
 
-[ $# -eq 1 ] || { show_help >&2 ; exit 1 ; }
-[ $1 = "-h" ] && { show_help ; exit 0 ; }
-
-combineCards_Run2 $1
+[ "$1" = "-h" ] && { show_help ; exit 0 ; }
+if ! [ "$1" = "--source" ] ; then
+    [ "$#" -eq 1 ] && combineCards_Run2 $1 #|| { show_help >&2 ; exit 1 ; }
+fi
